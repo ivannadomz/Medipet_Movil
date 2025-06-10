@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E6F3FF"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:contentDescription="@string/img_pass_des"
+        android:src="@drawable/img_pass"
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="270dp"
+        android:text="@string/pass_des_2"
+        android:textSize="14sp"
+        android:textColor="#A0A0A0"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/etNmCode1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="290dp"
+        android:minHeight="40dp"
+        android:inputType="number"
+        android:hint="@null"
+        android:background="@drawable/rounded_blue_border"
+        android:importantForAutofill="no"
+        android:layout_margin="30dp"/>
+
+    <TextView
+        android:id="@+id/btnContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:gravity="center"
+        android:text="@string/continue_button"
+        android:background="@drawable/button_border"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/btnBackLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:gravity="center"
+        android:text="@string/login_button"
+        android:textColor="#5A9BD5"
+        android:background="@null"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"/>
+
+</LinearLayout>

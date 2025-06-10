@@ -4,6 +4,7 @@
     <string name="email_input">Email</string>
     <string name="email_des">Icon email</string>
     <string name="login_button">Iniciar sesión</string>
+    <string name="continue_button">Siguiente</string>
     <!-- Interfaz prescription -->
     <string name="img_prescription_des">Imagen de prescripcion</string>
     <string name="reason_label">Motivo:</string>
@@ -17,5 +18,6 @@
     <!-- Interfaz recover password -->
     <string name="img_pass_des">Imagen de recuperar contraseña</string>
     <string name="pass_des_1">Ingrese su dirección de correo electrónico y te enviaremos un codigo a su correo electrónico para restablecer su contraseña.</string>
+    <string name="pass_des_2">Ingrese el código enviado a tu correo electrónico</string>
     <string name="btn_recover">Restablecer</string>
 </resources>
