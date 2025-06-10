@@ -6,6 +6,7 @@
     android:background="#E6F3FF"
     android:padding="16dp">
 
+    <!-- Contenido arriba (igual que antes) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +19,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_sign_out"
-            android:contentDescription="@string/folder_icon" />
+            android:contentDescription="@string/ic_sign_out" />
 
         <View
             android:layout_width="0dp"
@@ -120,5 +121,50 @@
             android:layout_marginHorizontal="5dp"
             />
 
+    </LinearLayout>
+
+    <!-- Este View flexible empuja el menú hacia abajo -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#BBDEFB"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/menu_products"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_product"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/products_menu"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/menu_appointments"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_calendar"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/appointments_menu"
+            android:scaleType="centerInside" />
+
+        <ImageButton
+            android:id="@+id/menu_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/home_menu"
+            android:scaleType="centerInside" />
     </LinearLayout>
 </LinearLayout>
