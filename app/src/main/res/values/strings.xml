@@ -17,9 +17,6 @@
     <string name="password_input">Contraseña</string>
     <string name="forgot_password_link">¿Olvidaste tu contraseña?</string>
 
-
-
-
     <!--Owner Register-->
     <string name="welcome_text">¡Bienvenido!</string>
     <string name="instruction_text">Por favor, introduce tus datos para el registro</string>
@@ -32,7 +29,6 @@
     <string name="register_button2">Registrar</string>
     <string name="btn_back_des">Boton regresar</string>
 
-
     <!-- Register pet-->
     <string name="icon_pet_desc">Ícono de tarjeta médica de mascota</string>
     <string name="register_pet_title">¡Registra a tu mascota!</string>
@@ -44,9 +40,6 @@
     <string name="pet_breed">Selecciona la raza</string>
     <string name="pet_species">Selecciona la especie</string>
     <string name="register_pet_button">Registrar</string>
-
-
-
 
     <!-- Profile -->
     <string name="back_button_desc">Botón de retroceso</string>
@@ -62,16 +55,12 @@
     <string name="hint_address">Escribe tu dirección</string>
     <string name="edit_button_text">Editar</string>
 
-
-
-
     <!-- Pet Profile -->
     <string name="loading">Cargando...</string>
     <string name="pet_specie">Especie</string>
     <string name="pet_race">Race</string>
     <string name="pet_title">Tu mascota</string>
     <string name="photo_profile">Foto Perfil</string>
-
 
     <!-- Home_main -->
     <string name="ic_sign_out">Cerrar sesión</string>
@@ -85,5 +74,39 @@
     <string name="appointments_menu">Citas</string>
     <string name="home_menu">Inicio</string>
 
+    <string name="email_icon">Icon email</string>
+    <string name="continue_button">Siguiente</string>
+
+    <!-- Interfaz prescription -->
+    <string name="img_prescription">Imagen de prescripcion</string>
+    <string name="reason_label">Motivo:</string>
+    <string name="diagnosis_label">Diagnostico:</string>
+    <string name="date_label">Fecha de prescripcion:</string>
+    <string name="btn_xray">Radiografia</string>
+    <string name="btn_lab">Analisis</string>
+
+    <!-- Interfaz recover password -->
+    <string name="img_pass">Imagen de recuperar contraseña</string>
+    <string name="pass_des_1">Ingrese su dirección de correo electrónico y te enviaremos un codigo a su correo electrónico para restablecer su contraseña.</string>
+    <string name="pass_des_2">Ingrese el código enviado a tu correo electrónico</string>
+    <string name="pass_des_3">Ingresa tu nueva contraseña</string>
+    <string name="hint_pass">Nueva Contraseña</string>
+    <string name="hint_pass2">Confirmar Contraseña</string>
+    <string name="btn_recover">Restablecer</string>
+
+    <!-- Interfaza Products -->
+    <string name="search_product">Buscar productos...</string>
+    <string name="products_label">Productos</string>
+    <string name="icon_products">Icono de producto</string>
+
+    <!-- Interfaza Appointments -->
+    <string name="search_appointment">Buscar citas...</string>
+    <string name="appointments_label">Citas</string>
+    <string name="btn_prescription">Prescripcion</string>
+
+    <!-- Interfaza Vet -->
+    <string name="vet_tittle">Veterinario</string>
+    <string name="img_vet">Imagen de veterinario</string>
+    <string name="label_speciality">Especialidad</string>
 
 </resources>
