@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Medipet</string>
     <string name="btn_back_des">Boton regresar</string>
+    <string name="email_input">Email</string>
+    <string name="email_des">Icon email</string>
+    <string name="login_button">Iniciar sesión</string>
     <!-- Interfaz prescription -->
     <string name="img_prescription_des">Imagen de prescripcion</string>
     <string name="reason_label">Motivo:</string>
@@ -11,4 +14,8 @@
     <string name="specifications_text">Cargando...</string>
     <string name="btn_xray">Radiografia</string>
     <string name="btn_lab">Analisis</string>
+    <!-- Interfaz recover password -->
+    <string name="img_pass_des">Imagen de recuperar contraseña</string>
+    <string name="pass_des_1">Ingrese su dirección de correo electrónico y te enviaremos un codigo a su correo electrónico para restablecer su contraseña.</string>
+    <string name="btn_recover">Restablecer</string>
 </resources>

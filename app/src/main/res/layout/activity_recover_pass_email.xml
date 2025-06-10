@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E6F3FF"
+    android:padding="16dp"
+    android:gravity="center">
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:contentDescription="@string/img_pass_des"
+        android:src="@drawable/img_pass"
+        android:layout_marginBottom="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="270dp"
+        android:text="@string/pass_des_1"
+        android:textSize="14sp"
+        android:textColor="#A0A0A0"
+        android:textAlignment="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_blue_border"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:layout_margin="30dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_email"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/email_des"/>
+
+        <EditText
+            android:id="@+id/email_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/email_input"
+            android:inputType="textEmailAddress"
+            android:textColor="#000000"
+            android:background="@null"
+            android:importantForAutofill="no"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btnRecover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:gravity="center"
+        android:text="@string/btn_recover"
+        android:background="@drawable/button_border"
+        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/btnBackLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="250dp"
+        android:gravity="center"
+        android:text="@string/login_button"
+        android:textColor="#5A9BD5"
+        android:background="@null"
+        android:padding="10dp"
+        android:clickable="true"
+        android:focusable="true"/>
+
+</LinearLayout>
