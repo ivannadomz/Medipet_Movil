@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Medipet</string>
+    <string name="btn_back_des">Boton regresar</string>
+    <!-- Interfaz prescription -->
+    <string name="img_prescription_des">Imagen de prescripcion</string>
+    <string name="reason_label">Motivo:</string>
+    <string name="reason_text">Cargando...</string>
+    <string name="diagnosis_label">Diagnostico:</string>
+    <string name="diagnosis_text">Cargando...</string>
+    <string name="treatment_text">Cargando...</string>
+    <string name="specifications_text">Cargando...</string>
+    <string name="btn_xray">Radiografia</string>
+    <string name="btn_lab">Analisis</string>
 </resources>

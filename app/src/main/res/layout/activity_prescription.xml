@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E6F3FF"
+    android:padding="16dp">
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_back_arrow"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/btn_back_des"
+        android:layout_marginBottom="30dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:contentDescription="@string/img_prescription_des"
+        android:src="@drawable/img_prescription"
+        android:layout_marginBottom="30dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reason_label"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tvReason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reason_text"
+            android:textSize="18sp"
+            android:layout_marginStart="8dp"
+            android:radius="16dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/diagnosis_label"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tvDiagnosis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/diagnosis_text"
+            android:textSize="18sp"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvTreatment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:text="@string/treatment_text"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:background="@drawable/rounded_light_grayish_blue_border"
+    />
+
+    <TextView
+        android:id="@+id/tvSpecifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:text="@string/specifications_text"
+        android:textSize="18sp"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:background="@drawable/rounded_light_grayish_blue_border"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:gravity="center"
+        style="?android:attr/buttonBarStyle">
+
+        <Button
+            android:id="@+id/btnXray"
+            android:layout_width="wrap_content"
+            android:minWidth="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_xray"
+            android:layout_marginEnd="40dp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#6D97C4"
+            style="?android:attr/buttonBarButtonStyle"/>
+
+        <Button
+            android:id="@+id/btnLab"
+            android:layout_width="wrap_content"
+            android:minWidth="120dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#6D97C4"
+            android:textColor="#FFFFFF"
+            android:text="@string/btn_lab"
+            style="?android:attr/buttonBarButtonStyle"/>
+
+    </LinearLayout>
+</LinearLayout>
