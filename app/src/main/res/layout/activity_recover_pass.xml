@@ -18,22 +18,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxWidth="270dp"
-        android:text="@string/pass_des_2"
+        android:text="@string/pass_des_3"
         android:textSize="14sp"
         android:textColor="#A0A0A0"
         android:textAlignment="center"/>
 
     <EditText
-        android:id="@+id/etCode"
+        android:id="@+id/etNewPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="290dp"
         android:minHeight="40dp"
-        android:inputType="number"
+        android:inputType="textPassword"
+        android:hint="@string/hint_pass"
         android:background="@drawable/rounded_blue_border"
         android:importantForAutofill="no"
-        android:layout_margin="30dp"
-        android:padding="10dp"/>
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="10dp"
+        />
+
+    <EditText
+        android:id="@+id/etNewPassCon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="290dp"
+        android:minHeight="40dp"
+        android:inputType="textPassword"
+        android:hint="@string/hint_pass2"
+        android:background="@drawable/rounded_blue_border"
+        android:importantForAutofill="no"
+        android:layout_marginBottom="30dp"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_password"
+        android:drawablePadding="10dp"/>
 
     <TextView
         android:id="@+id/btnContinue"

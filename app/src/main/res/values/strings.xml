@@ -19,5 +19,8 @@
     <string name="img_pass_des">Imagen de recuperar contraseña</string>
     <string name="pass_des_1">Ingrese su dirección de correo electrónico y te enviaremos un codigo a su correo electrónico para restablecer su contraseña.</string>
     <string name="pass_des_2">Ingrese el código enviado a tu correo electrónico</string>
+    <string name="pass_des_3">Ingresa tu nueva contraseña</string>
+    <string name="hint_pass">Nueva Contraseña</string>
+    <string name="hint_pass2">Confirmar Contraseña</string>
     <string name="btn_recover">Restablecer</string>
 </resources>
