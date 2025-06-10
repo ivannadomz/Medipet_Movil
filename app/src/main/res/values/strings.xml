@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Medipet</string>
     <string name="btn_back_des">Boton regresar</string>
+    <string name="profile_icon">Boton perfil</string>
     <string name="email_input">Email</string>
     <string name="email_des">Icon email</string>
     <string name="login_button">Iniciar sesión</string>
@@ -23,4 +24,11 @@
     <string name="hint_pass">Nueva Contraseña</string>
     <string name="hint_pass2">Confirmar Contraseña</string>
     <string name="btn_recover">Restablecer</string>
+    <!-- Interfaza Products -->
+    <string name="search_product">Buscar productos...</string>
+    <string name="products_label">Productos</string>
+    <string name="product_text">Cargando...</string>
+    <string name="product_description_text">Cargando...</string>
+    <string name="product_price_text">Cargando...</string>
+    <string name="icon_products">Icono de producto</string>
 </resources>
