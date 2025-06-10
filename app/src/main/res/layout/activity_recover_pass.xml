@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:contentDescription="@string/img_pass_des"
+        android:contentDescription="@string/img_pass"
         android:src="@drawable/img_pass"
         android:layout_marginBottom="30dp"/>
 

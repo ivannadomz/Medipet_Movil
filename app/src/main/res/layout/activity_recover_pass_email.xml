@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:contentDescription="@string/img_pass_des"
+        android:contentDescription="@string/img_pass"
         android:src="@drawable/img_pass"
         android:layout_marginBottom="30dp"/>
 
@@ -37,7 +37,7 @@
             android:layout_height="24dp"
             android:src="@drawable/ic_email"
             android:layout_marginEnd="10dp"
-            android:contentDescription="@string/email_des"/>
+            android:contentDescription="@string/email_icon"/>
 
         <EditText
             android:id="@+id/email_input"

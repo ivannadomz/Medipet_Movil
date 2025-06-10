@@ -13,29 +13,29 @@
         android:gravity="center_vertical"
         android:layout_marginBottom="30dp">
 
-        <ImageButton
-            android:id="@+id/back_button"
+        <ImageView
+            android:id="@+id/icon_folder"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_back_arrow"
-            android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/btn_back_des"
-            />
+            android:src="@drawable/ic_sign_out"
+            android:contentDescription="@string/folder_icon" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1" />
 
-        <ImageButton
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
             android:id="@+id/icon_profile"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_profile"
-            android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/profile_icon"
-            android:layout_marginEnd="8dp"
-            />
+            android:contentDescription="@string/profile_icon" />
     </LinearLayout>
 
     <EditText
@@ -88,7 +88,7 @@
                 android:id="@+id/tvProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/product_text"
+                android:text="@string/loading"
                 android:textSize="18sp"
                 android:layout_marginBottom="5dp"
                 android:textStyle="bold"
@@ -98,7 +98,7 @@
                 android:id="@+id/tvProductCat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/product_description_text"
+                android:text="@string/loading"
                 android:textSize="12sp"
                 />
 
@@ -106,7 +106,7 @@
                 android:id="@+id/tvProductDes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/product_description_text"
+                android:text="@string/loading"
                 android:textSize="12sp"
                 />
         </LinearLayout>
@@ -115,7 +115,7 @@
             android:id="@+id/tvProductPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/product_price_text"
+            android:text="@string/loading"
             android:textSize="16sp"
             android:layout_marginHorizontal="5dp"
             />

@@ -7,15 +7,37 @@
     android:background="#E6F3FF"
     android:padding="16dp">
 
-    <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/ic_back_arrow"
-        android:background="?android:attr/selectableItemBackground"
-        android:contentDescription="@string/btn_back_des"
-        android:layout_marginBottom="30dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="30dp">
+
+        <ImageView
+            android:id="@+id/icon_folder"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_sign_out"
+            android:contentDescription="@string/folder_icon"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/icon_profile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_profile"
+            android:contentDescription="@string/profile_icon" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/etSearchAppointments"
@@ -47,14 +69,14 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:orientation="vertical"
-        android:background="@drawable/rounded_light_grayish_blue_border"
+        android:background="@drawable/rounded_border_box"
         android:padding="16dp">
 
         <TextView
             android:id="@+id/tvReasonAppointment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/reason_appoinment"
+            android:text="@string/loading"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="15dp"/>
@@ -63,7 +85,7 @@
             android:id="@+id/tvVet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/vet_name"
+            android:text="@string/loading"
             android:textSize="18sp"
             app:drawableStartCompat="@drawable/ic_doctor"
             android:drawablePadding="10dp"
@@ -74,12 +96,24 @@
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/date_appoinment"
+            android:text="@string/loading"
             android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_agenda"
+            app:drawableStartCompat="@drawable/ic_calendar"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/tvBranch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading"
+            android:textSize="18sp"
+            app:drawableStartCompat="@drawable/ic_location"
             android:drawablePadding="10dp"
             android:gravity="center"
             android:layout_marginBottom="20dp"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,7 +125,7 @@
                 android:id="@+id/tvStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/status"
+                android:text="@string/loading"
                 android:textStyle="italic"
                 android:textSize="18sp"
                 android:gravity="center"/>
@@ -101,18 +135,14 @@
                 android:layout_height="1dp"
                 android:layout_weight="1" />
 
-            <TextView
+            <Button
                 android:id="@+id/btnPrescription"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:minWidth="150dp"
-                android:gravity="center"
-                android:text="@string/btn_prescription"
-                android:background="@drawable/button_border"
+                android:layout_height="40dp"
+                android:backgroundTint="#5A9BD5"
                 android:textColor="#FFFFFF"
-                android:padding="5dp"
-                android:clickable="true"
-                android:focusable="true"/>
+                android:text="@string/btn_prescription"/>
 
         </LinearLayout>
     </LinearLayout>

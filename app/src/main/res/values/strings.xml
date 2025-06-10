@@ -3,23 +3,22 @@
     <string name="btn_back_des">Boton regresar</string>
     <string name="profile_icon">Boton perfil</string>
     <string name="email_input">Email</string>
-    <string name="email_des">Icon email</string>
+    <string name="email_icon">Icon email</string>
     <string name="login_button">Iniciar sesión</string>
     <string name="continue_button">Siguiente</string>
+    <string name="loading">Cargando...</string>
+    <string name="label_name">Nombre</string>
+    <string name="label_email">Correo electronico</string>
+    <string name="label_phone">Teléfono</string>
     <!-- Interfaz prescription -->
-    <string name="img_prescription_des">Imagen de prescripcion</string>
+    <string name="img_prescription">Imagen de prescripcion</string>
     <string name="reason_label">Motivo:</string>
-    <string name="reason_text">Cargando...</string>
     <string name="diagnosis_label">Diagnostico:</string>
-    <string name="diagnosis_text">Cargando...</string>
     <string name="date_label">Fecha de prescripcion:</string>
-    <string name="date_text">Cargando...</string>
-    <string name="treatment_text">Cargando...</string>
-    <string name="specifications_text">Cargando...</string>
     <string name="btn_xray">Radiografia</string>
     <string name="btn_lab">Analisis</string>
     <!-- Interfaz recover password -->
-    <string name="img_pass_des">Imagen de recuperar contraseña</string>
+    <string name="img_pass">Imagen de recuperar contraseña</string>
     <string name="pass_des_1">Ingrese su dirección de correo electrónico y te enviaremos un codigo a su correo electrónico para restablecer su contraseña.</string>
     <string name="pass_des_2">Ingrese el código enviado a tu correo electrónico</string>
     <string name="pass_des_3">Ingresa tu nueva contraseña</string>
@@ -29,17 +28,13 @@
     <!-- Interfaza Products -->
     <string name="search_product">Buscar productos...</string>
     <string name="products_label">Productos</string>
-    <string name="product_text">Cargando...</string>
-    <string name="product_description_text">Cargando...</string>
-    <string name="product_price_text">Cargando...</string>
     <string name="icon_products">Icono de producto</string>
     <!-- Interfaza Products -->
     <string name="search_appointment">Buscar citas...</string>
     <string name="appointments_label">Citas</string>
-    <string name="appointment_text">Cargando...</string>
-    <string name="vet_name">Cargando...</string>
-    <string name="date_appoinment">Cargando...</string>
-    <string name="reason_appoinment">Cargando...</string>
-    <string name="status">Cargando...</string>
     <string name="btn_prescription">Prescripcion</string>
+    <!-- Interfaza Vet -->
+    <string name="vet_tittle">Veterinario</string>
+    <string name="img_vet">Imagen de veterinario</string>
+    <string name="label_speciality">Especialidad</string>
 </resources>
