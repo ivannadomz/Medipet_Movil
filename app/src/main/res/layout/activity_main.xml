@@ -1,19 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#F1F8FF"
+    android:padding="20dp">
+
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="80dp"/>
+
+
+    <ImageView
+        android:id="@+id/imagePreview"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:src="@drawable/image1"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:contentDescription="@string/image_preview_desc"
+        />
+
 
     <TextView
+        android:id="@+id/textWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/welcome_message"
+        android:textSize="26sp"
+        android:textAlignment="center"
+        android:textColor="#5A9BD5"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textSubWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sub_welcome_message"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textColor="#616161"
+        android:layout_marginBottom="50dp"/>
+
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/login_button"
+        android:backgroundTint="#AFCBFF"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"
+        android:layout_marginBottom="05dp"/>
+
+
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="@string/register_button"
+        android:backgroundTint="#AFCBFF"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center"/>
+</LinearLayout>

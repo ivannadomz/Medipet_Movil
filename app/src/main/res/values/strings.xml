@@ -1,3 +1,89 @@
 <resources>
+
+    <!--Main-->
     <string name="app_name">Medipet</string>
+    <string name="image_preview_desc">Vista previa de la imagen</string>
+    <string name="welcome_message">Bienvenido a MediPet</string>
+    <string name="sub_welcome_message">La aplicación de confianza para tus mascotas</string>
+    <string name="login_button">Iniciar Sesión</string>
+    <string name="register_button">Registrarse</string>
+    <string name="ic_image">Vista previa de icono</string>
+
+    <!--Log in-->
+    <string name="logo">MediPet</string>
+    <string name="welcome_message2">¡Bienvenido de nuevo!</string>
+    <string name="instruction_message">Por favor, introduce tus datos para continuar</string>
+    <string name="email_input">Correo electrónico</string>
+    <string name="password_input">Contraseña</string>
+    <string name="forgot_password_link">¿Olvidaste tu contraseña?</string>
+
+
+
+
+    <!--Owner Register-->
+    <string name="welcome_text">¡Bienvenido!</string>
+    <string name="instruction_text">Por favor, introduce tus datos para el registro</string>
+    <string name="name">Nombre</string>
+    <string name="last_name">Apellido Paterno</string>
+    <string name="mother_last_name">Apellido Materno</string>
+    <string name="email">Correo electrónico</string>
+    <string name="phone">Teléfono</string>
+    <string name="address">Dirección</string>
+    <string name="register_button2">Registrar</string>
+    <string name="btn_back_des">Boton regresar</string>
+
+
+    <!-- Register pet-->
+    <string name="icon_pet_desc">Ícono de tarjeta médica de mascota</string>
+    <string name="register_pet_title">¡Registra a tu mascota!</string>
+    <string name="pet_name">Nombre de la mascota</string>
+    <string name="pet_birthday">Fecha de nacimiento</string>
+    <string name="pet_age">Edad</string>
+    <string name="pet_weight">Peso</string>
+    <string name="pet_allergies">Alergias</string>
+    <string name="pet_breed">Selecciona la raza</string>
+    <string name="pet_species">Selecciona la especie</string>
+    <string name="register_pet_button">Registrar</string>
+
+
+
+
+    <!-- Profile -->
+    <string name="back_button_desc">Botón de retroceso</string>
+    <string name="profile_title">Mi Perfil</string>
+    <string name="profile_icon_desc">Icono de perfil</string>
+    <string name="label_name">Nombre</string>
+    <string name="hint_name">Escribe tu nombre</string>
+    <string name="label_email">Correo electrónico</string>
+    <string name="hint_email">ejemplo@correo.com</string>
+    <string name="label_phone">Teléfono</string>
+    <string name="hint_phone">Escribe tu número</string>
+    <string name="label_address">Dirección</string>
+    <string name="hint_address">Escribe tu dirección</string>
+    <string name="edit_button_text">Editar</string>
+
+
+
+
+    <!-- Pet Profile -->
+    <string name="loading">Cargando...</string>
+    <string name="pet_specie">Especie</string>
+    <string name="pet_race">Race</string>
+    <string name="pet_title">Tu mascota</string>
+    <string name="photo_profile">Foto Perfil</string>
+
+
+    <!-- Home_main -->
+    <string name="ic_sign_out">Cerrar sesión</string>
+    <string name="profile_icon">Perfil</string>
+    <string name="products_title">Productos</string>
+    <string name="product_image">Imagen de productos</string>
+    <string name="products_menu">Menú de productos</string>
+    <string name="pets_title">Mascotas</string>
+    <string name="pet_image">Imagen de mascota</string>
+    <string name="add_pet">Agregar mascota</string>
+    <string name="appointments_menu">Citas</string>
+    <string name="home_menu">Inicio</string>
+
+
 </resources>
