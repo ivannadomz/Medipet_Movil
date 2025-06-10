@@ -12,6 +12,8 @@
     <string name="reason_text">Cargando...</string>
     <string name="diagnosis_label">Diagnostico:</string>
     <string name="diagnosis_text">Cargando...</string>
+    <string name="date_label">Fecha de prescripcion:</string>
+    <string name="date_text">Cargando...</string>
     <string name="treatment_text">Cargando...</string>
     <string name="specifications_text">Cargando...</string>
     <string name="btn_xray">Radiografia</string>
@@ -31,4 +33,13 @@
     <string name="product_description_text">Cargando...</string>
     <string name="product_price_text">Cargando...</string>
     <string name="icon_products">Icono de producto</string>
+    <!-- Interfaza Products -->
+    <string name="search_appointment">Buscar citas...</string>
+    <string name="appointments_label">Citas</string>
+    <string name="appointment_text">Cargando...</string>
+    <string name="vet_name">Cargando...</string>
+    <string name="date_appoinment">Cargando...</string>
+    <string name="reason_appoinment">Cargando...</string>
+    <string name="status">Cargando...</string>
+    <string name="btn_prescription">Prescripcion</string>
 </resources>
