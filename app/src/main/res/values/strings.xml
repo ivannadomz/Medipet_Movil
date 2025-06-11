@@ -26,6 +26,8 @@
     <string name="email">Correo electrónico</string>
     <string name="phone">Teléfono</string>
     <string name="address">Dirección</string>
+    <string name="pass">Contraseña</string>
+    <string name="confirmPass">Confirmar Contraseña</string>
     <string name="register_button2">Registrar</string>
     <string name="btn_back_des">Boton regresar</string>
 
