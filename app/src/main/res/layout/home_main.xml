@@ -72,15 +72,24 @@
             android:textStyle="bold"
             android:layout_marginTop="30dp" />
 
-        <ImageButton
-            android:id="@+id/pet_button"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:src="@drawable/cute_dog"
-            android:background="@drawable/rounded_pet"
-            android:scaleType="centerCrop"
+        <!-- Contenedor para mascotas dinámicas -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:contentDescription="@string/pet_image" />
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/petContainer"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="8dp" />
+
+        </HorizontalScrollView>
+
     </LinearLayout>
 
     <ImageButton

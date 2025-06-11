@@ -27,8 +27,13 @@
         </activity>
 
         <!-- Puedes mantener MainActivity u otras actividades aquí -->
-        <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".PetRegisterActivity" />
+        <activity android:name=".ProductsActivity" />
+        <activity android:name=".AppointmentsActivity" />
+        <activity android:name=".PetActivity" />
+
     </application>
 
 </manifest>
