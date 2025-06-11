@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    public String url = "http://192.168.1.96:8000/api/owners";
+    public String url = "http://192.168.100.6:8000/api/owners";
 
     /*
     {
