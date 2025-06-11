@@ -3,11 +3,11 @@ package uaq.mx.medipet;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.view.Gravity;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,9 +28,9 @@ import java.util.Map;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private static final String TAG = "HomeActivity";
     private LinearLayout petContainer;
     private String token;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +39,19 @@ public class HomeActivity extends AppCompatActivity {
 
         petContainer = findViewById(R.id.petContainer);
 
-        SharedPreferences prefs = getSharedPreferences("auth", MODE_PRIVATE);
+        prefs = getSharedPreferences("auth", MODE_PRIVATE);
         token = prefs.getString("token", null);
 
         if (token == null) {
             redirectToWelcome();
+            return;
         }
 
-        // Botón cerrar sesión
+        setupButtons();
+        loadUserPets();
+    }
+
+    private void setupButtons() {
         ImageView signOutIcon = findViewById(R.id.icon_folder);
         signOutIcon.setOnClickListener(v -> {
             SharedPreferences.Editor editor = prefs.edit();
@@ -55,16 +60,13 @@ public class HomeActivity extends AppCompatActivity {
             redirectToWelcome();
         });
 
-        // Botón agregar mascota
         ImageButton addPetFab = findViewById(R.id.add_pet_fab);
         addPetFab.setOnClickListener(v -> {
-            Intent intent = new Intent(HomeActivity.this, PetRegisterActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(HomeActivity.this, PetRegisterActivity.class));
         });
 
-        // Menú inferior
         findViewById(R.id.menu_home).setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+            // Ya estamos en HomeActivity, no hacemos nada
         });
 
         findViewById(R.id.menu_products).setOnClickListener(v -> {
@@ -74,8 +76,6 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.menu_appointments).setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this, AppointmentsActivity.class));
         });
-
-        loadUserPets();
     }
 
     private void redirectToWelcome() {
@@ -86,13 +86,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void loadUserPets() {
-        String url = "http://192.168.100.6:8000/api/pets"; // URL real de tu API
+        String url = "http://192.168.100.6:8000/api/pets";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
                         JSONArray pets = response.getJSONArray("pets");
+                        petContainer.removeAllViews();
                         for (int i = 0; i < pets.length(); i++) {
                             JSONObject pet = pets.getJSONObject(i);
                             int id = pet.getInt("id");
@@ -118,27 +119,52 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void addPetButton(int id, String petName) {
-        ImageButton petButton = new ImageButton(this);
+        // Contenedor vertical para imagen + texto
+        LinearLayout container = new LinearLayout(this);
+        container.setOrientation(LinearLayout.VERTICAL);
         int widthInPx = dpToPx(160);
-        int heightInPx = dpToPx(155);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(widthInPx, heightInPx);
+        int heightInPx = dpToPx(180);
+        LinearLayout.LayoutParams containerParams = new LinearLayout.LayoutParams(widthInPx, heightInPx);
         int margin = dpToPx(8);
-        params.setMargins(margin, margin, margin, margin);
-        petButton.setLayoutParams(params);
+        containerParams.setMargins(margin, margin, margin, margin);
+        container.setLayoutParams(containerParams);
+        container.setGravity(Gravity.CENTER_HORIZONTAL);
 
-        petButton.setImageResource(R.drawable.cute_dog);
+        // Imagen como botón
+        ImageButton petButton = new ImageButton(this);
+        LinearLayout.LayoutParams imgParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                dpToPx(140)
+        );
+        petButton.setLayoutParams(imgParams);
+        petButton.setImageResource(R.drawable.image_fingerprint);
         petButton.setScaleType(ImageView.ScaleType.CENTER_CROP);
         petButton.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_pet));
         petButton.setContentDescription(petName);
 
-        // Redirigir a PetActivity
         petButton.setOnClickListener(v -> {
             Intent intent = new Intent(HomeActivity.this, PetActivity.class);
-            intent.putExtra("pet_id", id); // <-- Asegúrate que PetActivity reciba esto
+            intent.putExtra("pet_id", id);
             startActivity(intent);
         });
 
-        petContainer.addView(petButton);
+        // Texto con nombre
+        TextView nameText = new TextView(this);
+        nameText.setText(petName);
+        nameText.setTextColor(ContextCompat.getColor(this, android.R.color.black));
+        nameText.setTextSize(16);
+        nameText.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        nameText.setLayoutParams(textParams);
+
+        // Agregar imagen y texto al contenedor
+        container.addView(petButton);
+        container.addView(nameText);
+
+        petContainer.addView(container);
     }
 
     private int dpToPx(int dp) {
