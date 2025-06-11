@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,15 @@ public class LoginActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
 
         buttonLogin.setOnClickListener(v -> loginUser());
+
+        //Obtener boton para regresar
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> back());
+    }
+
+    //Metodo para regresar a la anterior ventana
+    public void back() {
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     private void loginUser() {
@@ -51,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
-                "http://192.168.100.6:8000/api/login",
+                "http://192.168.1.96:8000/api/login",
                 loginData,
                 response -> {
                     try {

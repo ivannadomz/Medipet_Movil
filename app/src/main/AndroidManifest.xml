@@ -18,7 +18,7 @@
 
         <!-- Bienvenida como pantalla inicial -->
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".MainActivity"
 
             android:exported="true">
             <intent-filter>
@@ -34,8 +34,9 @@
         <activity android:name=".AppointmentsActivity" />
         <activity android:name=".PetActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".WelcomeActivity" />
         <activity android:name=".RegisterActivity"/>
+        <activity android:name=".RegisterPetActivity"/>
 
     </application>
 
