@@ -1,167 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
     android:background="#F1F8FE">
-
-
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_back_arrow"
-        android:layout_gravity="start"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/back_button_desc" />
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/profile_title"
-        android:textSize="22sp"
-        android:textColor="#00796B"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp" />
-
-
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:src="@drawable/img_profile"
-        android:background="@drawable/bg_circle_light"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/profile_icon_desc" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@drawable/rounded_border_box">
+        android:padding="24dp">
 
+        <!-- Flecha de regreso -->
+        <ImageView
+            android:id="@+id/back_arrow"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_back_arrow"
+            android:layout_gravity="start"
+            android:layout_marginBottom="8dp"
+            android:contentDescription="@string/back_button_desc" />
 
+        <!-- Título del perfil -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/label_name"
-            android:textColor="#5A9BD5"
+            android:text="@string/profile_title"
+            android:textSize="22sp"
+            android:textColor="#00796B"
             android:textStyle="bold"
-            android:textSize="14sp" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp" />
 
-        <EditText
+        <!-- Imagen de perfil -->
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/img_profile"
+            android:background="@drawable/bg_circle_light"
+            android:layout_marginBottom="20dp"
+            android:contentDescription="@string/photo_profile" />
+
+        <!-- Contenedor de campos -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/hint_name"
-            android:background="@null"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:inputType="textPersonName"
-            android:importantForAutofill="no"
-            android:focusable="false"/>
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/rounded_border_box">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#5A9BD5"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp" />
+            <!-- Nombre -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_name"
+                android:textColor="#00796B"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+            <EditText
+                android:id="@+id/edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_name"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:inputType="textPersonName"
+                android:autofillHints="no"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#5A9BD5"
+                android:layout_marginBottom="8dp" />
 
+            <!-- Email -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textColor="#00796B"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+            <EditText
+                android:id="@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/email"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:inputType="textEmailAddress"
+                android:autofillHints="no"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#5A9BD5"
+                android:layout_marginBottom="8dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_email"
-            android:textColor="#5A9BD5"
-            android:textStyle="bold"
-            android:textSize="14sp" />
+            <!-- Teléfono -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone"
+                android:textColor="#00796B"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+            <EditText
+                android:id="@+id/edit_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:inputType="phone" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#5A9BD5"
+                android:layout_marginBottom="8dp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_email"
-            android:background="@null"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:inputType="textEmailAddress"
-            android:importantForAutofill="no"
-            android:focusable="false"/>
+            <!-- Dirección -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/address"
+                android:textColor="#00796B"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+            <EditText
+                android:id="@+id/edit_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:inputType="textPostalAddress"
+                android:autofillHints="no"/>
+        </LinearLayout>
 
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#5A9BD5"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_phone"
-            android:textColor="#5A9BD5"
-            android:textStyle="bold"
-            android:textSize="14sp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_phone"
-            android:background="@null"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:inputType="phone"
-            android:importantForAutofill="no"
-            android:focusable="false"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#5A9BD5"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_address"
-            android:textColor="#5A9BD5"
-            android:textStyle="bold"
-            android:textSize="14sp" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_address"
-            android:background="@null"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:inputType="textPostalAddress"
-            android:importantForAutofill="no"
-            android:focusable="false"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#5A9BD5"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp" />
-
-
+        <!-- Botón Editar -->
         <TextView
             android:id="@+id/edit_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/edit_button_text"
-            android:textColor="#5A9BD5"
+            android:textColor="#00796B"
             android:textStyle="bold"
+            android:textSize="16sp"
             android:layout_gravity="end"
-            android:paddingTop="8dp" />
+            android:paddingTop="16dp" />
+
+        <!-- Botones Actualizar y Cancelar -->
+        <LinearLayout
+            android:id="@+id/buttons_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:visibility="gone"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:backgroundTint="#B0BEC5"
+                android:textColor="#FFFFFF"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/update"
+                android:backgroundTint="#8DBCC7"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

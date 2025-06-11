@@ -54,6 +54,8 @@
     <string name="label_address">Dirección</string>
     <string name="hint_address">Escribe tu dirección</string>
     <string name="edit_button_text">Editar</string>
+    <string name="update">Actualizar</string>
+    <string name="cancel">Actualizar</string>
 
     <!-- Pet Profile -->
     <string name="loading">Cargando...</string>

@@ -60,6 +60,11 @@ public class HomeActivity extends AppCompatActivity {
             redirectToWelcome();
         });
 
+        ImageView profileIcon = findViewById(R.id.icon_profile);
+        profileIcon.setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+        });
+
         ImageButton addPetFab = findViewById(R.id.add_pet_fab);
         addPetFab.setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this, PetRegisterActivity.class));
@@ -119,7 +124,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void addPetButton(int id, String petName) {
-        // Contenedor vertical para imagen + texto
         LinearLayout container = new LinearLayout(this);
         container.setOrientation(LinearLayout.VERTICAL);
         int widthInPx = dpToPx(160);
@@ -130,7 +134,6 @@ public class HomeActivity extends AppCompatActivity {
         container.setLayoutParams(containerParams);
         container.setGravity(Gravity.CENTER_HORIZONTAL);
 
-        // Imagen como botón
         ImageButton petButton = new ImageButton(this);
         LinearLayout.LayoutParams imgParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -148,7 +151,6 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Texto con nombre
         TextView nameText = new TextView(this);
         nameText.setText(petName);
         nameText.setTextColor(ContextCompat.getColor(this, android.R.color.black));
@@ -160,7 +162,6 @@ public class HomeActivity extends AppCompatActivity {
         );
         nameText.setLayoutParams(textParams);
 
-        // Agregar imagen y texto al contenedor
         container.addView(petButton);
         container.addView(nameText);
 
@@ -172,3 +173,4 @@ public class HomeActivity extends AppCompatActivity {
         return (int) (dp * scale + 0.5f);
     }
 }
+

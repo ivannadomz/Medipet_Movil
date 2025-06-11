@@ -33,6 +33,7 @@
         <activity android:name=".ProductsActivity" />
         <activity android:name=".AppointmentsActivity" />
         <activity android:name=".PetActivity" />
+        <activity android:name=".ProfileActivity" />
 
     </application>
 
