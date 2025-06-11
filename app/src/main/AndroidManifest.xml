@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -34,6 +35,8 @@
         <activity android:name=".AppointmentsActivity" />
         <activity android:name=".PetActivity" />
         <activity android:name=".ProfileActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".RegisterActivity"/>
 
     </application>
 

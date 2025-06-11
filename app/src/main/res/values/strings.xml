@@ -26,6 +26,8 @@
     <string name="email">Correo electrónico</string>
     <string name="phone">Teléfono</string>
     <string name="address">Dirección</string>
+    <string name="pass">Contraseña</string>
+    <string name="confirmPass">Confirmar Contraseña</string>
     <string name="register_button2">Registrar</string>
     <string name="btn_back_des">Boton regresar</string>
 
@@ -34,12 +36,16 @@
     <string name="register_pet_title">¡Registra a tu mascota!</string>
     <string name="pet_name">Nombre de la mascota</string>
     <string name="pet_birthday">Fecha de nacimiento</string>
-    <string name="pet_age">Edad</string>
+    <string name="pet_gender">Genero</string>
+    <string name="pet_specie_label">Especie</string>
+    <string name="pet_breed">Raza</string>
     <string name="pet_weight">Peso</string>
     <string name="pet_allergies">Alergias</string>
-    <string name="pet_breed">Selecciona la raza</string>
-    <string name="pet_species">Selecciona la especie</string>
     <string name="register_pet_button">Registrar</string>
+    <string-array name="gender_options">
+        <item>H</item>
+        <item>M</item>
+    </string-array>
 
     <!-- Profile -->
     <string name="back_button_desc">Botón de retroceso</string>
@@ -68,7 +74,7 @@
         <string name="pet_birthday_label">Fecha de nacimiento:</string>
         <string name="pet_weight_label">Peso:</string>
         <string name="pet_allergies_label">Alergias:</string>
-        <string name="pet_specie_label">Especie:</string>
+
         <string name="pet_race_label">Raza:</string>
 
 
