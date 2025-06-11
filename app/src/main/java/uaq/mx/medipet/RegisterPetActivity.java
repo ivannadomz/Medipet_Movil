@@ -114,7 +114,7 @@ public class RegisterPetActivity extends AppCompatActivity {
                 url,
                 jsonBody,
                 response -> {
-                    startActivity(new Intent(this, MainActivity.class));
+                    startActivity(new Intent(this, HomeActivity.class));
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG).show(); // Delay de 1 segundo
                 },
                 error -> {

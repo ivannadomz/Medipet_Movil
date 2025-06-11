@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity {
 
         ImageButton addPetFab = findViewById(R.id.add_pet_fab);
         addPetFab.setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, PetRegisterActivity.class));
+            startActivity(new Intent(HomeActivity.this, RegisterPetActivity.class));
         });
 
         findViewById(R.id.menu_home).setOnClickListener(v -> {

@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
                 url,
                 jsonBody,
                 response -> {
-                    startActivity(new Intent(this, MainActivity.class));
+                    startActivity(new Intent(this, WelcomeActivity.class));
                     Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG).show();
                 },
                 error -> {
