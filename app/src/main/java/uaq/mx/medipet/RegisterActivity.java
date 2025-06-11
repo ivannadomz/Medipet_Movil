@@ -11,6 +11,7 @@ import android.content.Intent;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -91,7 +92,6 @@ public class RegisterActivity extends AppCompatActivity {
             jsonBody.put("phone", phone);
             jsonBody.put("address", address);
             jsonBody.put("password", password);
-            jsonBody.put("password", confirmPassword);
         } catch (JSONException je) {
             je.printStackTrace();
         }
@@ -101,22 +101,18 @@ public class RegisterActivity extends AppCompatActivity {
                 url,
                 jsonBody,
                 response -> {
-                    Toast.makeText(this, "Registro exitoso 🎉", Toast.LENGTH_LONG).show();
-                    System.out.println("response>>>" + response.toString());
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    startActivity(new Intent(this, MainActivity.class));
+                    Toast.makeText(this, "Registro exitoso", Toast.LENGTH_LONG).show();
                 },
                 error -> {
                     if (error.networkResponse != null) {
                         String errorMessage = new String(error.networkResponse.data);
-                        System.out.println("Error: " + errorMessage);
                         Toast.makeText(this, "Error del servidor: " + errorMessage, Toast.LENGTH_LONG).show();
                     } else {
-                        System.out.println("Error sin respuesta: " + error.toString());
                         Toast.makeText(this, "No se pudo conectar al servidor", Toast.LENGTH_LONG).show();
                     }
-                }) {
+                })
+        {
             @Override
             public Map<String, String> getHeaders() {
                 Map<String, String> headers = new HashMap<>();
@@ -125,6 +121,12 @@ public class RegisterActivity extends AppCompatActivity {
                 return headers;
             }
         };
+
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(
+                5000,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
 
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(jsonObjectRequest);
