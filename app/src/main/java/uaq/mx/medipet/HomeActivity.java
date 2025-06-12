@@ -71,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.menu_home).setOnClickListener(v -> {
-            // Ya estamos en HomeActivity, no hacemos nada
+            // Ya estamos en HomeActivity
         });
 
         findViewById(R.id.menu_products).setOnClickListener(v -> {
@@ -145,9 +145,13 @@ public class HomeActivity extends AppCompatActivity {
         petButton.setBackground(ContextCompat.getDrawable(this, R.drawable.rounded_pet));
         petButton.setContentDescription(petName);
 
+        // Asocia el ID de la mascota al botón
+        petButton.setTag(id);
+
         petButton.setOnClickListener(v -> {
+            int petId = (int) v.getTag();
             Intent intent = new Intent(HomeActivity.this, PetActivity.class);
-            intent.putExtra("pet_id", id);
+            intent.putExtra("pet_id", petId);
             startActivity(intent);
         });
 
@@ -173,4 +177,3 @@ public class HomeActivity extends AppCompatActivity {
         return (int) (dp * scale + 0.5f);
     }
 }
-

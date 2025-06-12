@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -13,7 +14,6 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,6 +24,8 @@ public class PetActivity extends AppCompatActivity {
 
     private TextView petNameTextView, petBirthdayTextView, petWeightTextView,
             petAllergiesTextView, petSpecieTextView, petRaceTextView;
+
+    private int petId;  // ID de la mascota que se recibe
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +39,27 @@ public class PetActivity extends AppCompatActivity {
         petSpecieTextView = findViewById(R.id.pet_specie);
         petRaceTextView = findViewById(R.id.pet_race);
 
-        // Botón back
+        // Obtener el pet_id enviado desde HomeActivity
+        petId = getIntent().getIntExtra("pet_id", -1);
+        if (petId == -1) {
+            Log.e("PetActivity", "No se recibió el ID de la mascota");
+            finish(); // Termina actividad si no hay ID válido
+            return;
+        }
+
         ImageButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> {
-            // Aquí regresa a HomeActivity
             Intent intent = new Intent(PetActivity.this, HomeActivity.class);
             startActivity(intent);
-            finish(); // cerrar esta actividad para no regresar aquí con back
+            finish();
         });
 
         cargarDatosMascota();
     }
 
     private void cargarDatosMascota() {
-        String url = "http://192.168.100.6:8000/api/pets";
+        // Cambiar la URL para obtener solo la info de la mascota con ID petId
+        String url = "http://192.168.100.6:8000/api/pets/" + petId;
 
         SharedPreferences prefs = getSharedPreferences("auth", MODE_PRIVATE);
         String token = prefs.getString("token", "");
@@ -61,13 +70,8 @@ public class PetActivity extends AppCompatActivity {
                 null,
                 response -> {
                     try {
-                        JSONArray petsArray = response.getJSONArray("pets");
-                        if (petsArray.length() == 0) {
-                            Log.d("PetActivity", "No hay mascotas registradas.");
-                            return;
-                        }
-
-                        JSONObject pet = petsArray.getJSONObject(0);
+                        // Aquí ya viene un solo objeto JSON con la info de la mascota
+                        JSONObject pet = response.getJSONObject("pet");
 
                         String name = pet.getString("name");
                         String birthdate = pet.getString("birthdate");
