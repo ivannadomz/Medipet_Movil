@@ -91,7 +91,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void loadUserPets() {
-        String url = "http://192.168.100.6:8000/api/pets";
+        String url = "http://192.168.1.96:8000/api/pets";
         RequestQueue queue = Volley.newRequestQueue(this);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,

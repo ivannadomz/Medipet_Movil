@@ -30,7 +30,7 @@
         <!-- Puedes mantener MainActivity u otras actividades aquí -->
         <activity android:name=".LoginActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".ProductsActivity" />
+        <activity android:name=".ProductsActivity"/>
         <activity android:name=".AppointmentsActivity" />
         <activity android:name=".PetActivity" />
         <activity android:name=".ProfileActivity" />
