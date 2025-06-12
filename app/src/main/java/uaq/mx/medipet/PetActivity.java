@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -52,6 +53,14 @@ public class PetActivity extends AppCompatActivity {
             Intent intent = new Intent(PetActivity.this, HomeActivity.class);
             startActivity(intent);
             finish();
+        });
+
+        // Configurar el botón para ir a citas y enviar el `pet_id`
+        Button buttonAppointments = findViewById(R.id.button_go_to_appointments);
+        buttonAppointments.setOnClickListener(v -> {
+            Intent intent = new Intent(PetActivity.this, AppointmentsActivity.class);
+            intent.putExtra("pet_id", petId);  // Se pasa el ID de la mascota
+            startActivity(intent);
         });
 
         cargarDatosMascota();

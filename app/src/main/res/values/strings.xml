@@ -120,6 +120,7 @@
     <!-- Interfaza Appointments -->
     <string name="search_appointment">Buscar citas...</string>
     <string name="appointments_label">Citas</string>
+    <string name="go_to_appointments">Ir a citas</string>
     <string name="btn_prescription">Prescripcion</string>
 
     <!-- Interfaza Vet -->
