@@ -81,7 +81,7 @@ public class AppointmentsActivity extends AppCompatActivity {
                 return;
             }
 
-            String url = "http://192.168.100.6:8000/api/owners/by-user/" + userId;
+            String url = "http://148.220.215.137:8000/api/owners/by-user/" + userId;
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     response -> {
                         try {
@@ -141,7 +141,7 @@ public class AppointmentsActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "http://192.168.100.6:8000/api/appointments/pet/" + petId;
+        String url = "http://148.220.215.137:8000/api/appointments/pet/" + petId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
@@ -273,7 +273,7 @@ public class AppointmentsActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "http://192.168.100.6:8000/api/appointments/" + appointmentId;
+        String url = "http://148.220.215.137:8000/api/appointments/" + appointmentId;
 
         StringRequest request = new StringRequest(Request.Method.PATCH, url,
                 response -> {

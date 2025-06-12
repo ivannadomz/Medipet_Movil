@@ -117,7 +117,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void fetchOwnerIdByUser(String userId) {
-        String url = "http://192.168.100.6:8000/api/owners/by-user/" + userId;
+        String url = "http://148.220.215.137:8000/api/owners/by-user/" + userId;
         RequestQueue queue = Volley.newRequestQueue(this);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -147,7 +147,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void loadUserProfile() {
-        String url = "http://192.168.100.6:8000/api/owners/" + ownerId;
+        String url = "http://148.220.215.137:8000/api/owners/" + ownerId;
         RequestQueue queue = Volley.newRequestQueue(this);
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -183,7 +183,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void updateUserProfile() {
-        String url = "http://192.168.100.6:8000/api/owners/" + ownerId;
+        String url = "http://148.220.215.137:8000/api/owners/" + ownerId;
 
         JSONObject body = new JSONObject();
         JSONObject userObj = new JSONObject();

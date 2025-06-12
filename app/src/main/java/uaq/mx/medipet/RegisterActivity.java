@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
-    public String url = "http://192.168.100.6:8000/api/owners";
+    public String url = "http://148.220.215.137:8000/api/owners";
 
     EditText nameEdit, lastNameEdit, motherLastNameEdit,  emailEdit, phoneEdit, addressEdit, passEdit, confirmPassEdit;
 

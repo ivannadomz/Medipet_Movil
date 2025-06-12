@@ -68,7 +68,7 @@ public class PetActivity extends AppCompatActivity {
     }
 
     private void cargarDatosMascota() {
-        String url = "http://192.168.100.6:8000/api/pets/" + petId;
+        String url = "http://148.220.215.137:8000/api/pets/" + petId;
 
         SharedPreferences prefs = getSharedPreferences("auth", MODE_PRIVATE);
         String token = prefs.getString("token", "");

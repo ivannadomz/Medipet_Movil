@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
-                "http://192.168.100.6:8000/api/login",
+                "http://148.220.215.137:8000/api/login",
                 loginData,
                 response -> {
                     try {

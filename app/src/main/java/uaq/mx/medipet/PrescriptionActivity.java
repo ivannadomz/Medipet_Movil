@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PrescriptionActivity extends AppCompatActivity {
-    public String url = "http://192.168.100.6:8000/api/prescriptions?appointment_id=";
+    public String url = "http://148.220.215.137:8000/api/prescriptions?appointment_id=";
 
     private String token;
     private SharedPreferences prefs;

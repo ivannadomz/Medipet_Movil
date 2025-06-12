@@ -59,7 +59,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             je.printStackTrace();
         }
 
-        String url = "http://192.168.100.6:8000/api/forgot-password"; // ⚙️ Asegúrate de que la ruta sea /api/forgot-password
+        String url = "http://148.220.215.137:8000/api/forgot-password"; // ⚙️ Asegúrate de que la ruta sea /api/forgot-password
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.POST, url, jsonBody,
