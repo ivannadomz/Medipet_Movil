@@ -2,152 +2,105 @@ package uaq.mx.medipet;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PetActivity extends AppCompatActivity {
 
-    private TextView petName, petBirthday, petWeight, petAllergies, petSpecie, petRace;
-    private ImageView petImage, backButton;
-    private LinearLayout infoContainer;
-    private SharedPreferences prefs;
-    private String token;
-    private int petId;
+    private TextView petNameTextView, petBirthdayTextView, petWeightTextView,
+            petAllergiesTextView, petSpecieTextView, petRaceTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pet_profile_main);
 
-        prefs = getSharedPreferences("auth", MODE_PRIVATE);
-        token = prefs.getString("token", null);
+        petNameTextView = findViewById(R.id.pet_name);
+        petBirthdayTextView = findViewById(R.id.pet_birthday);
+        petWeightTextView = findViewById(R.id.pet_weight);
+        petAllergiesTextView = findViewById(R.id.pet_allergies);
+        petSpecieTextView = findViewById(R.id.pet_specie);
+        petRaceTextView = findViewById(R.id.pet_race);
 
-        if (token == null) {
-            redirectToWelcome();
-            return;
-        }
+        // Botón back
+        ImageButton backButton = findViewById(R.id.back_button);
+        backButton.setOnClickListener(v -> {
+            // Aquí regresa a HomeActivity
+            Intent intent = new Intent(PetActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish(); // cerrar esta actividad para no regresar aquí con back
+        });
 
-        petId = getIntent().getIntExtra("pet_id", -1);
-        if (petId == -1) {
-            Toast.makeText(this, "Error al obtener la mascota", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
-        backButton = findViewById(R.id.back_button);
-        petImage = findViewById(R.id.profile_image);
-        petName = findViewById(R.id.pet_name);
-        petBirthday = findViewById(R.id.pet_birthday);
-        petWeight = findViewById(R.id.pet_weight);
-        petAllergies = findViewById(R.id.pet_allergies);
-        petSpecie = findViewById(R.id.pet_specie);
-        petRace = findViewById(R.id.pet_race);
-        infoContainer = findViewById(R.id.info_container);
-
-        backButton.setOnClickListener(view -> finish());
-
-        loadPetData();
+        cargarDatosMascota();
     }
 
-    private void redirectToWelcome() {
-        Intent intent = new Intent(PetActivity.this, WelcomeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-        finish();
-    }
+    private void cargarDatosMascota() {
+        String url = "http://192.168.100.6:8000/api/pets";
 
-    private void loadPetData() {
-        String url = "http://192.168.100.6:8000/api/pets/" + petId;
-        RequestQueue queue = Volley.newRequestQueue(this);
+        SharedPreferences prefs = getSharedPreferences("auth", MODE_PRIVATE);
+        String token = prefs.getString("token", "");
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
                 response -> {
                     try {
-                        JSONObject pet = response.getJSONObject("pet");
-                        petName.setText(pet.getString("name"));
-                        petBirthday.setText(pet.getString("birthday"));
-                        petWeight.setText(pet.getString("weight") + " kg");
-                        petAllergies.setText(pet.getString("allergies"));
-                        petSpecie.setText(pet.getString("specie"));
-                        petRace.setText(pet.getString("race"));
-
-                        // Validar si existe una URL de imagen antes de iniciar la descarga
-                        String imageUrl = pet.optString("image_url", "");
-                        if (!imageUrl.isEmpty()) {
-                            new LoadImageTask(petImage).execute(imageUrl);
+                        JSONArray petsArray = response.getJSONArray("pets");
+                        if (petsArray.length() == 0) {
+                            Log.d("PetActivity", "No hay mascotas registradas.");
+                            return;
                         }
 
-                        infoContainer.setVisibility(View.VISIBLE);
+                        JSONObject pet = petsArray.getJSONObject(0);
+
+                        String name = pet.getString("name");
+                        String birthdate = pet.getString("birthdate");
+                        String weight = pet.getString("weight");
+                        String allergies = pet.getString("allergies");
+
+                        JSONObject specie = pet.optJSONObject("specie");
+                        String specieName = (specie != null) ? specie.getString("specie") : "Sin especie";
+
+                        JSONObject race = pet.optJSONObject("race");
+                        String raceName = (race != null) ? race.getString("name") : "Sin raza";
+
+                        petNameTextView.setText(name);
+                        petBirthdayTextView.setText(birthdate);
+                        petWeightTextView.setText(weight + " kg");
+                        petAllergiesTextView.setText(allergies);
+                        petSpecieTextView.setText(specieName);
+                        petRaceTextView.setText(raceName);
+
                     } catch (JSONException e) {
-                        Toast.makeText(this, "Error al procesar datos de la mascota", Toast.LENGTH_SHORT).show();
+                        Log.e("PetActivity", "Error JSON: " + e.getMessage());
                     }
                 },
-                error -> {
-                    Toast.makeText(this, "Error al cargar datos de la mascota", Toast.LENGTH_SHORT).show();
-                }) {
+                error -> Log.e("PetActivity", "Error en la solicitud: " + error.toString())
+        ) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
+                Map<String, String> headers = new HashMap<>();
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
             }
         };
 
-        queue.add(request);
-    }
-
-    private static class LoadImageTask extends AsyncTask<String, Void, Bitmap> {
-        private final ImageView imageView;
-
-        public LoadImageTask(ImageView imageView) {
-            this.imageView = imageView;
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... urls) {
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setDoInput(true);
-                connection.connect();
-                InputStream input = connection.getInputStream();
-                return BitmapFactory.decodeStream(input);
-            } catch (Exception e) {
-                Log.e("LoadImageTask", "Error cargando imagen", e);
-                return null;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            if (bitmap != null) {
-                imageView.setImageBitmap(bitmap);
-            }
-        }
+        Volley.newRequestQueue(this).add(request);
     }
 }
