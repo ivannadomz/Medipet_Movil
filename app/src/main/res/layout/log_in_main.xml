@@ -3,9 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:background="#E3F2FD"
     android:padding="30dp">
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_back_arrow"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/btn_back_des"
+        android:layout_marginBottom="30dp"/>
 
     <ImageView
         android:id="@+id/logo"
