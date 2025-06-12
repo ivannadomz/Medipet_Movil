@@ -89,10 +89,6 @@ public class ProductsActivity extends AppCompatActivity {
             recreate();
         });
 
-        //Appointments
-        findViewById(R.id.menu_appointments).setOnClickListener(v -> {
-            startActivity(new Intent(ProductsActivity.this, AppointmentsActivity.class));
-        });
     }
 
     //Cargar todos los productos
