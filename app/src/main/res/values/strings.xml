@@ -35,7 +35,7 @@
     <string name="icon_pet_desc">Ícono de tarjeta médica de mascota</string>
     <string name="register_pet_title">¡Registra a tu mascota!</string>
     <string name="pet_name">Nombre de la mascota</string>
-    <string name="pet_birthday">Fecha de nacimiento</string>
+    <string name="pet_birthday">Coloca el año asi: 2004/07/24 </string>
     <string name="pet_gender">Genero</string>
     <string name="pet_specie_label">Especie</string>
     <string name="pet_breed">Raza</string>
@@ -103,6 +103,8 @@
     <string name="date_label">Fecha de prescripcion:</string>
     <string name="btn_xray">Radiografia</string>
     <string name="btn_lab">Analisis</string>
+    <string name="treatment_label">Tratamiento</string>
+    <string name="specifications_label">Especificaciones</string>
 
     <!-- Interfaz recover password -->
     <string name="img_pass">Imagen de recuperar contraseña</string>

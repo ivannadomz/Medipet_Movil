@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,12 +23,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PrescriptionActivity extends AppCompatActivity {
-    public String url = "http://192.168.1.96:8000/api/prescriptions?appointment_id=";
+    public String url = "http://192.168.100.6:8000/api/prescriptions?appointment_id=";
 
     private String token;
     private SharedPreferences prefs;
 
-    //ID de la prescripcion que se recibe
+    // ID de la cita que se recibe para buscar prescripción
     private int appointmentId;
 
     private TextView reasonTextView, diagnosisTextView, dateTextView, treatmentTextView, specificationsTextView;
@@ -38,7 +38,7 @@ public class PrescriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prescription);
 
-        //Obtener token
+        // Obtener token
         prefs = getSharedPreferences("auth", MODE_PRIVATE);
         token = prefs.getString("token", null);
         if (token == null) {
@@ -46,22 +46,22 @@ public class PrescriptionActivity extends AppCompatActivity {
             return;
         }
 
-        //Encontrar los elementos de la vista
+        // Encontrar los elementos de la vista
         reasonTextView = findViewById(R.id.tvReason);
         diagnosisTextView = findViewById(R.id.tvDiagnosis);
         dateTextView = findViewById(R.id.tvDatePrescription);
         treatmentTextView = findViewById(R.id.tvTreatment);
         specificationsTextView = findViewById(R.id.tvSpecifications);
 
-        //Obtener el prescription_id enviado desde AppointmentsActivity
-        appointmentId = getIntent().getIntExtra("pet_id", -1);
+        // Obtener el appointment_id enviado desde AppointmentsActivity
+        appointmentId = getIntent().getIntExtra("appointment_id", -1);
         if (appointmentId == -1) {
-            Log.e("PetActivity", "No se recibió el ID de la mascota");
+            Log.e("PrescriptionActivity", "No se recibió el ID de la cita");
             finish(); // Termina actividad si no hay ID válido
             return;
         }
 
-        //Boton de regresar
+        // Botón de regresar
         ImageView backButton = findViewById(R.id.btn_back);
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(PrescriptionActivity.this, AppointmentsActivity.class);
@@ -80,16 +80,31 @@ public class PrescriptionActivity extends AppCompatActivity {
     }
 
     private void cargarDatosPrescripcion() {
-        //Cambiar la URL para obtener solo la info de la prescripcion con ID prescriptionId
-        url = url + appointmentId;
+        String fullUrl = url + appointmentId;
 
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET,
-                url,
+                fullUrl,
                 null,
                 response -> {
+                    Log.d("PrescriptionActivity", "Respuesta JSON completa: " + response.toString());
+
                     try {
-                        JSONObject prescription = response.getJSONObject("prescription");
+                        if (!response.has("prescriptions")) {
+                            Log.e("PrescriptionActivity", "No existe 'prescriptions' en la respuesta");
+                            return;
+                        }
+
+                        // Obtener arreglo de prescripciones
+                        JSONArray prescriptionsArray = response.getJSONArray("prescriptions");
+
+                        if (prescriptionsArray.length() == 0) {
+                            Log.e("PrescriptionActivity", "El arreglo 'prescriptions' está vacío");
+                            return;
+                        }
+
+                        // Obtener la primera prescripción
+                        JSONObject prescription = prescriptionsArray.getJSONObject(0);
 
                         String reason = prescription.getString("reason");
                         String diagnosis = prescription.getString("diagnosis");
@@ -104,10 +119,10 @@ public class PrescriptionActivity extends AppCompatActivity {
                         specificationsTextView.setText(specifications);
 
                     } catch (JSONException e) {
-                        Log.e("PrecriptionActivity", "Error JSON: " + e.getMessage());
+                        Log.e("PrescriptionActivity", "Error JSON: " + e.getMessage());
                     }
                 },
-                error -> Log.e("PrecriptionActivity", "Error en la solicitud: " + error.toString())
+                error -> Log.e("PrescriptionActivity", "Error en la solicitud: " + error.toString())
         ) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

@@ -90,28 +90,56 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvTreatment"
+    <!-- Bloque tratamiento -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="100dp"
-        android:text="@string/loading"
-        android:textSize="18sp"
-        android:layout_margin="8dp"
+        android:orientation="vertical"
         android:padding="8dp"
-        android:background="@drawable/rounded_light_grayish_blue_border"
-    />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
 
-    <TextView
-        android:id="@+id/tvSpecifications"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/treatment_label"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvTreatment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="100dp"
+            android:text="@string/loading"
+            android:textSize="18sp"
+            android:padding="8dp"
+            android:background="@drawable/rounded_light_grayish_blue_border" />
+    </LinearLayout>
+
+    <!-- Bloque especificaciones -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="100dp"
-        android:text="@string/loading"
-        android:textSize="18sp"
-        android:layout_margin="8dp"
+        android:orientation="vertical"
         android:padding="8dp"
-        android:background="@drawable/rounded_light_grayish_blue_border"
-        />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/specifications_label"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvSpecifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="100dp"
+            android:text="@string/loading"
+            android:textSize="18sp"
+            android:padding="8dp"
+            android:background="@drawable/rounded_light_grayish_blue_border" />
+    </LinearLayout>
 
 </LinearLayout>

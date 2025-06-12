@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:text="@string/pet_title"
             android:textSize="22sp"
-            android:textColor="#00796B"
+            android:textColor="#3D90D7"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="16dp" />
@@ -167,7 +167,7 @@
             android:text="@string/go_to_appointments"
             android:textSize="16sp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#00796B"
+            android:backgroundTint="#8DBCC7"
             android:textColor="#FFFFFF"/>
 
     </LinearLayout>

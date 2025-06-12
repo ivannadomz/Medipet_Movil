@@ -78,9 +78,9 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(HomeActivity.this, ProductsActivity.class));
         });
 
-        findViewById(R.id.menu_appointments).setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, AppointmentsActivity.class));
-        });
+        // findViewById(R.id.menu_appointments).setOnClickListener(v -> {
+//     startActivity(new Intent(HomeActivity.this, AppointmentsActivity.class));
+// });
     }
 
     private void redirectToWelcome() {

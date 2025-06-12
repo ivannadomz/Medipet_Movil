@@ -1,22 +1,22 @@
 package uaq.mx.medipet;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -34,15 +34,17 @@ import java.util.Map;
 public class AppointmentsActivity extends AppCompatActivity {
 
     private LinearLayout appointmentsContainer;
+    private EditText searchAppointments;
     private List<JSONObject> appointmentList = new ArrayList<>();
     private int petId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_appoinments);
+        setContentView(R.layout.activity_appoinments); // Asegúrate que este nombre esté bien escrito
 
         appointmentsContainer = findViewById(R.id.appointmentsContainer);
+        searchAppointments = findViewById(R.id.etSearchAppointments);
 
         petId = getIntent().getIntExtra("pet_id", -1);
         if (petId == -1) {
@@ -53,6 +55,15 @@ public class AppointmentsActivity extends AppCompatActivity {
 
         fetchAppointments();
 
+        searchAppointments.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterAppointments(s.toString());
+            }
+            @Override public void afterTextChanged(Editable s) { }
+        });
+
+        // Icono perfil
         ImageView iconProfile = findViewById(R.id.icon_profile);
         iconProfile.setOnClickListener(v -> {
             SharedPreferences prefs = getSharedPreferences("auth", MODE_PRIVATE);
@@ -62,18 +73,20 @@ public class AppointmentsActivity extends AppCompatActivity {
                 return;
             }
 
-            int userId = prefs.getInt("user_id", -1);
-            if (userId == -1) {
-                Toast.makeText(this, "ID de usuario no encontrado", Toast.LENGTH_SHORT).show();
+            int userId;
+            try {
+                userId = Integer.parseInt(prefs.getString("user_id", "-1"));
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "ID de usuario inválido", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Obtener el ownerId del backend
-            String url = "http://192.168.100.6:8000/api/owners/user/" + userId;
+            String url = "http://192.168.100.6:8000/api/owners/by-user/" + userId;
             JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                     response -> {
                         try {
-                            int ownerId = response.getInt("id");
+                            JSONObject ownerObj = response.getJSONObject("owner");
+                            String ownerId = ownerObj.getString("id");
                             Intent intent = new Intent(AppointmentsActivity.this, ProfileActivity.class);
                             intent.putExtra("ownerId", ownerId);
                             startActivity(intent);
@@ -94,6 +107,7 @@ public class AppointmentsActivity extends AppCompatActivity {
             Volley.newRequestQueue(this).add(request);
         });
 
+        // Icono cerrar sesión
         ImageView iconFolder = findViewById(R.id.icon_folder);
         iconFolder.setOnClickListener(v -> {
             SharedPreferences prefs = getSharedPreferences("auth", MODE_PRIVATE);
@@ -104,21 +118,17 @@ public class AppointmentsActivity extends AppCompatActivity {
             finish();
         });
 
-        ImageButton menuProducts = findViewById(R.id.menu_products);
-        menuProducts.setOnClickListener(v -> {
-            Intent intent = new Intent(AppointmentsActivity.this, ProductsActivity.class);
-            startActivity(intent);
+        // Navegación menú
+        findViewById(R.id.menu_products).setOnClickListener(v -> {
+            startActivity(new Intent(AppointmentsActivity.this, ProductsActivity.class));
         });
 
-        ImageButton menuAppointments = findViewById(R.id.menu_appointments);
-        menuAppointments.setOnClickListener(v -> {
+        findViewById(R.id.menu_appointments).setOnClickListener(v -> {
             Toast.makeText(this, "Ya estás en la sección de citas", Toast.LENGTH_SHORT).show();
         });
 
-        ImageButton menuHome = findViewById(R.id.menu_home);
-        menuHome.setOnClickListener(v -> {
-            Intent intent = new Intent(AppointmentsActivity.this, HomeActivity.class);
-            startActivity(intent);
+        findViewById(R.id.menu_home).setOnClickListener(v -> {
+            startActivity(new Intent(AppointmentsActivity.this, HomeActivity.class));
         });
     }
 
@@ -138,15 +148,15 @@ public class AppointmentsActivity extends AppCompatActivity {
                     try {
                         JSONArray appointments = response.optJSONArray("appointments");
                         appointmentList.clear();
-                        appointmentsContainer.removeAllViews();
 
                         if (appointments != null && appointments.length() > 0) {
                             for (int i = 0; i < appointments.length(); i++) {
-                                JSONObject appointment = appointments.getJSONObject(i);
-                                appointmentList.add(appointment);
-                                addAppointmentCard(appointment);
+                                appointmentList.add(appointments.getJSONObject(i));
                             }
+                            filterAppointments(searchAppointments.getText().toString());
                         } else {
+                            appointmentsContainer.removeAllViews();
+                            appointmentsContainer.setVisibility(View.GONE);
                             Toast.makeText(this, "No hay citas para esta mascota", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
@@ -156,7 +166,7 @@ public class AppointmentsActivity extends AppCompatActivity {
                 error -> Toast.makeText(this, "Error al conectar con el servidor", Toast.LENGTH_LONG).show()
         ) {
             @Override
-            public Map<String, String> getHeaders() {
+            public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
@@ -164,6 +174,43 @@ public class AppointmentsActivity extends AppCompatActivity {
         };
 
         Volley.newRequestQueue(this).add(request);
+    }
+
+    private void filterAppointments(String query) {
+        List<JSONObject> appointmentsToShow = new ArrayList<>();
+        String lowerQuery = query.toLowerCase();
+
+        for (JSONObject appointment : appointmentList) {
+            String reason = appointment.optString("reason", "").toLowerCase();
+            String vetName = "veterinario no disponible";
+            String branchName = "sucursal no disponible";
+
+            try {
+                if (appointment.has("vet") && appointment.getJSONObject("vet").has("user")) {
+                    vetName = appointment.getJSONObject("vet").getJSONObject("user").optString("name", vetName).toLowerCase();
+                }
+                if (appointment.has("branch")) {
+                    branchName = appointment.getJSONObject("branch").optString("name", branchName).toLowerCase();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            if (reason.contains(lowerQuery) || vetName.contains(lowerQuery) || branchName.contains(lowerQuery)) {
+                appointmentsToShow.add(appointment);
+            }
+        }
+
+        appointmentsContainer.removeAllViews();
+
+        if (appointmentsToShow.isEmpty()) {
+            appointmentsContainer.setVisibility(View.GONE);
+        } else {
+            appointmentsContainer.setVisibility(View.VISIBLE);
+            for (JSONObject appointment : appointmentsToShow) {
+                addAppointmentCard(appointment);
+            }
+        }
     }
 
     private void addAppointmentCard(JSONObject appointment) {
@@ -226,19 +273,30 @@ public class AppointmentsActivity extends AppCompatActivity {
             return;
         }
 
-        String url = "http://192.168.100.6:8000/api/appointments/" + appointmentId + "/cancel";
+        String url = "http://192.168.100.6:8000/api/appointments/" + appointmentId;
 
-        StringRequest request = new StringRequest(Request.Method.PUT, url,
+        StringRequest request = new StringRequest(Request.Method.PATCH, url,
                 response -> {
                     Toast.makeText(this, "Cita cancelada", Toast.LENGTH_SHORT).show();
-                    tvStatus.setText("Estado: canceled");
+                    tvStatus.setText("Estado: cancelled");
                     btnCancel.setVisibility(View.GONE);
                 },
                 error -> Toast.makeText(this, "Error al cancelar la cita", Toast.LENGTH_LONG).show()
         ) {
             @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
+            public byte[] getBody() {
+                String body = "{\"status\":\"cancelled\"}";
+                return body.getBytes();
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
                 headers.put("Authorization", "Bearer " + token);
                 return headers;
             }

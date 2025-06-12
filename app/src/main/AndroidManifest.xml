@@ -38,6 +38,7 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".RegisterPetActivity"/>
         <activity android:name=".PrescriptionActivity"/>
+        <activity android:name=".ForgotPasswordActivity"/>
 
 
     </application>

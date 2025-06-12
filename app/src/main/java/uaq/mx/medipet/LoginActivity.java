@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in_main);
 
@@ -40,6 +43,13 @@ public class LoginActivity extends AppCompatActivity {
 
         ImageButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> back());
+
+        TextView forgotPasswordLink = findViewById(R.id.forgot_password_link);
+        forgotPasswordLink.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
+            finish();
+        });
     }
 
     public void back() {
