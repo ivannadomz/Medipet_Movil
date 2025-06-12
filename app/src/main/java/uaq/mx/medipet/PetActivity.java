@@ -24,7 +24,7 @@ import java.util.Map;
 public class PetActivity extends AppCompatActivity {
 
     private TextView petNameTextView, petBirthdayTextView, petWeightTextView,
-            petAllergiesTextView, petSpecieTextView, petRaceTextView;
+            petAllergiesTextView, petSpecieTextView, petRaceTextView, petGenderTextView;
 
     private int petId;  // ID de la mascota que se recibe
 
@@ -39,6 +39,7 @@ public class PetActivity extends AppCompatActivity {
         petAllergiesTextView = findViewById(R.id.pet_allergies);
         petSpecieTextView = findViewById(R.id.pet_specie);
         petRaceTextView = findViewById(R.id.pet_race);
+        petGenderTextView = findViewById(R.id.pet_gender);
 
         // Obtener el pet_id enviado desde HomeActivity
         petId = getIntent().getIntExtra("pet_id", -1);
@@ -67,7 +68,6 @@ public class PetActivity extends AppCompatActivity {
     }
 
     private void cargarDatosMascota() {
-        // Cambiar la URL para obtener solo la info de la mascota con ID petId
         String url = "http://192.168.100.6:8000/api/pets/" + petId;
 
         SharedPreferences prefs = getSharedPreferences("auth", MODE_PRIVATE);
@@ -79,24 +79,25 @@ public class PetActivity extends AppCompatActivity {
                 null,
                 response -> {
                     try {
-                        // Aquí ya viene un solo objeto JSON con la info de la mascota
                         JSONObject pet = response.getJSONObject("pet");
 
                         String name = pet.getString("name");
                         String birthdate = pet.getString("birthdate");
                         String weight = pet.getString("weight");
                         String allergies = pet.getString("allergies");
+                        String gender = pet.optString("gender", "No especificado");
 
                         JSONObject specie = pet.optJSONObject("specie");
-                        String specieName = (specie != null) ? specie.getString("specie") : "Sin especie";
+                        String specieName = (specie != null) ? specie.optString("specie", "Sin especie") : "Sin especie";
 
                         JSONObject race = pet.optJSONObject("race");
-                        String raceName = (race != null) ? race.getString("name") : "Sin raza";
+                        String raceName = (race != null) ? race.optString("name", "Sin raza") : "Sin raza";
 
                         petNameTextView.setText(name);
                         petBirthdayTextView.setText(birthdate);
                         petWeightTextView.setText(weight + " kg");
                         petAllergiesTextView.setText(allergies);
+                        petGenderTextView.setText(gender);
                         petSpecieTextView.setText(specieName);
                         petRaceTextView.setText(raceName);
 

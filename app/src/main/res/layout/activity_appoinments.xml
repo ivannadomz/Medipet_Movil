@@ -66,101 +66,98 @@
         android:textStyle="bold"
         android:textColor="#5A9BD5"/>
 
-    <!-- Tarjeta de cita -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:orientation="vertical"
-        android:background="@drawable/rounded_border_box"
-        android:padding="16dp">
-
-        <TextView
-            android:id="@+id/tvReasonAppointment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/loading"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="15dp"/>
-
-        <TextView
-            android:id="@+id/tvVet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/loading"
-            android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_doctor"
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/loading"
-            android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_calendar"
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:id="@+id/tvBranch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/loading"
-            android:textSize="18sp"
-            app:drawableStartCompat="@drawable/ic_location"
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"/>
-
-        <!-- Estado y botones -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="10dp">
-
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/loading"
-                android:textStyle="italic"
-                android:textSize="18sp"
-                android:gravity="center"
-                android:layout_marginEnd="16dp"/>
-
-            <Button
-                android:id="@+id/btnPrescription"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:backgroundTint="#5A9BD5"
-                android:textColor="#FFFFFF"
-                android:text="@string/btn_prescription"
-                android:minWidth="120dp"
-                android:layout_marginEnd="8dp"/>
-
-            <Button
-                android:id="@+id/btnCancelAppointment"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:backgroundTint="#D32F2F"
-                android:textColor="#FFFFFF"
-                android:text="Cancelar cita"
-                android:minWidth="120dp"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- Espaciador flexible -->
-    <View
+    <!-- Lista de citas (contenedor manual con ScrollView) -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/appointmentsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="8dp">
+
+            <!-- Una tarjeta de cita (plantilla que se duplicará por código) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_border_box"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:id="@+id/tvReason"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Motivo"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/tvVet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Veterinario"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/tvBranch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sucursal"
+                    android:layout_marginBottom="4dp" />
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Estado"
+                    android:textStyle="italic"
+                    android:layout_marginBottom="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:layout_marginTop="8dp">
+
+                    <Button
+                        android:id="@+id/btnPrescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:text="Ver receta"
+                        android:paddingHorizontal="8dp"
+                        android:textSize="12sp"
+                        android:backgroundTint="#5A9BD5"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Button
+                        android:id="@+id/btnCancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:text="Cancelar"
+                        android:paddingHorizontal="8dp"
+                        android:textSize="12sp"
+                        android:backgroundTint="#D32F2F"
+                        android:textColor="#FFFFFF"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <!-- Menú inferior -->
     <LinearLayout
@@ -201,5 +198,4 @@
             android:contentDescription="@string/home_menu"
             android:scaleType="centerInside" />
     </LinearLayout>
-
 </LinearLayout>

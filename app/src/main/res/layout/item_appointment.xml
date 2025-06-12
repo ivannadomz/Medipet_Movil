@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_border_box"
+    android:padding="12dp"
+    android:layout_marginBottom="12dp">
+
+    <TextView
+        android:id="@+id/tvReason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Motivo"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvVet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Veterinario"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvBranch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sucursal"
+        android:layout_marginBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estado"
+        android:textStyle="italic"
+        android:layout_marginBottom="8dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnPrescription"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:text="Ver receta"
+            android:paddingHorizontal="8dp"
+            android:textSize="12sp"
+            android:backgroundTint="#5A9BD5"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:text="Cancelar"
+            android:paddingHorizontal="8dp"
+            android:textSize="12sp"
+            android:backgroundTint="#D32F2F"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+</LinearLayout>

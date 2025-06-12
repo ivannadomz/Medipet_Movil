@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProductsActivity extends AppCompatActivity {
-    public String url_products = "http://192.168.1.96:8000/api/products";
+    public String url_products = "http://192.168.100.6:8000/api/products";
 
     private LinearLayout productContainer;
     private String token;

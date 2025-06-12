@@ -3,7 +3,6 @@ package uaq.mx.medipet;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -69,19 +68,33 @@ public class ProfileActivity extends AppCompatActivity {
             return;
         }
 
-        fetchCurrentUser();
+        // Revisar si llegó ownerId desde intent
+        ownerId = getIntent().getStringExtra("ownerId");
+
+        if (ownerId != null && !ownerId.isEmpty()) {
+            loadUserProfile();  // Si viene el ownerId, cargar perfil
+        } else {
+            // Obtener user_id guardado desde login
+            String userId = prefs.getString("user_id", null);
+            if (userId != null) {
+                fetchOwnerIdByUser(userId);
+            } else {
+                Toast.makeText(this, "No se encontró user_id. Inicia sesión nuevamente.", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }
 
         editButton.setOnClickListener(v -> {
             setEditable(true);
-            buttonsContainer.setVisibility(View.VISIBLE);
-            editButton.setVisibility(View.GONE);
+            buttonsContainer.setVisibility(android.view.View.VISIBLE);
+            editButton.setVisibility(android.view.View.GONE);
         });
 
         btnCancel.setOnClickListener(v -> {
             restoreOriginalValues();
             setEditable(false);
-            buttonsContainer.setVisibility(View.GONE);
-            editButton.setVisibility(View.VISIBLE);
+            buttonsContainer.setVisibility(android.view.View.GONE);
+            editButton.setVisibility(android.view.View.VISIBLE);
         });
 
         btnUpdate.setOnClickListener(v -> updateUserProfile());
@@ -101,35 +114,6 @@ public class ProfileActivity extends AppCompatActivity {
         editEmail.setText(originalEmail);
         editPhone.setText(originalPhone);
         editAddress.setText(originalAddress);
-    }
-
-    private void fetchCurrentUser() {
-        String url = "http://192.168.100.6:8000/api/user";
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                response -> {
-                    try {
-                        String userId = response.getString("id");
-                        fetchOwnerIdByUser(userId);
-                    } catch (JSONException e) {
-                        Toast.makeText(this, "Error procesando usuario", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                },
-                error -> {
-                    Toast.makeText(this, "No se pudo obtener usuario", Toast.LENGTH_SHORT).show();
-                    finish();
-                }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", "Bearer " + token);
-                return headers;
-            }
-        };
-
-        queue.add(request);
     }
 
     private void fetchOwnerIdByUser(String userId) {
@@ -169,22 +153,19 @@ public class ProfileActivity extends AppCompatActivity {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
                     try {
-                        // Obtenemos el objeto "owner"
                         JSONObject ownerObj = response.getJSONObject("owner");
 
-                        // Del owner sacamos phone y address
                         originalPhone = ownerObj.optString("phone", "");
                         originalAddress = ownerObj.optString("address", "");
 
-                        // Del objeto user dentro de owner sacamos name y email
                         JSONObject userObj = ownerObj.getJSONObject("user");
                         originalName = userObj.optString("name", "");
                         originalEmail = userObj.optString("email", "");
 
                         restoreOriginalValues();
                         setEditable(false);
-                        buttonsContainer.setVisibility(View.GONE);
-                        editButton.setVisibility(View.VISIBLE);
+                        buttonsContainer.setVisibility(android.view.View.GONE);
+                        editButton.setVisibility(android.view.View.VISIBLE);
                     } catch (JSONException e) {
                         Toast.makeText(this, "Error procesando perfil", Toast.LENGTH_SHORT).show();
                     }
@@ -200,7 +181,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         queue.add(request);
     }
-
 
     private void updateUserProfile() {
         String url = "http://192.168.100.6:8000/api/owners/" + ownerId;
@@ -246,8 +226,8 @@ public class ProfileActivity extends AppCompatActivity {
                     originalAddress = editAddress.getText().toString();
 
                     setEditable(false);
-                    buttonsContainer.setVisibility(View.GONE);
-                    editButton.setVisibility(View.VISIBLE);
+                    buttonsContainer.setVisibility(android.view.View.GONE);
+                    editButton.setVisibility(android.view.View.VISIBLE);
                 },
                 error -> {
                     if (error.networkResponse != null && error.networkResponse.data != null) {
@@ -269,7 +249,4 @@ public class ProfileActivity extends AppCompatActivity {
 
         queue.add(putRequest);
     }
-
 }
-
-

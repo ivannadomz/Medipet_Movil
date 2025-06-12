@@ -1,4 +1,5 @@
 package uaq.mx.medipet;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -37,12 +38,10 @@ public class LoginActivity extends AppCompatActivity {
 
         buttonLogin.setOnClickListener(v -> loginUser());
 
-        //Obtener boton para regresar
         ImageButton backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> back());
     }
 
-    //Metodo para regresar a la anterior ventana
     public void back() {
         startActivity(new Intent(this, MainActivity.class));
     }
@@ -61,22 +60,27 @@ public class LoginActivity extends AppCompatActivity {
 
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.POST,
-                "http://192.168.1.96:8000/api/login",
+                "http://192.168.100.6:8000/api/login",
                 loginData,
                 response -> {
                     try {
                         String token = response.getString("access_token");
+                        JSONObject user = response.getJSONObject("user");
+                        String userId = user.getString("id");
 
-                        // Guardar el token
+                        // Guardar token y user_id
                         SharedPreferences prefs = getSharedPreferences("auth", MODE_PRIVATE);
-                        prefs.edit().putString("token", token).apply();
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("token", token);
+                        editor.putString("user_id", userId);
+                        editor.apply();
 
                         Toast.makeText(this, "Login correcto", Toast.LENGTH_SHORT).show();
-                        // Ir a otra actividad
                         startActivity(new Intent(this, HomeActivity.class));
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        Toast.makeText(this, "Error procesando respuesta", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {

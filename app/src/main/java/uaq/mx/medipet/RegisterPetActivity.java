@@ -32,11 +32,11 @@ import java.util.Map;
 
 public class RegisterPetActivity extends AppCompatActivity {
 
-    public String url_pets = "http://192.168.1.96:8000/api/pets";
-    public String url_breeds = "http://192.168.1.96:8000/api/races";
-    public String url_species = "http://192.168.1.96:8000/api/species";
-    public String url_user = "http://192.168.1.96:8000/api/user";
-    public String url_owner = "http://192.168.1.96:8000/api/owners/by-user/";
+    public String url_pets = "http://192.168.100.6:8000/api/pets";
+    public String url_breeds = "http://192.168.100.6:8000/api/races";
+    public String url_species = "http://192.168.100.6:8000/api/species";
+    public String url_user = "http://192.168.100.6:8000/api/user";
+    public String url_owner = "http://192.168.100.6:8000/api/owners/by-user/";
 
     EditText petNameEdit, petBirthdateEdit, petWeightEdit, petAllergiesEdit;
     Spinner petSpeciesSpinner, petBreedsSpinner, petGenSpinner;
